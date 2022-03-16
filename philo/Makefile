@@ -9,6 +9,7 @@ INC_DIR = includes
 SRC = 	check_state_philos.c \
         create_philos.c \
         destroy_mutex.c \
+        error_with_return.c \
         fork_functions.c \
         free_data_and_philos.c \
         get_time.c \

@@ -6,7 +6,7 @@
 /*   By: shoogenb <shoogenb@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/18 14:30:05 by shoogenb      #+#    #+#                 */
-/*   Updated: 2022/03/16 11:30:16 by shoogenb      ########   odam.nl         */
+/*   Updated: 2022/03/16 11:36:29 by shoogenb      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int argc, char **argv)
 		data = init_philo();
 		if (!data)
 		{
-			ft_putendl_fd("Error mallocing phill", 2);
+			ft_putendl_fd("Error mallocing data", 2);
 			return (1);
 		}
 		parse_input(argv, argc, data);

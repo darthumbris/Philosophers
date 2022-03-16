@@ -6,7 +6,7 @@
 /*   By: shoogenb <shoogenb@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/15 14:52:59 by shoogenb      #+#    #+#                 */
-/*   Updated: 2022/03/15 16:19:34 by shoogenb      ########   odam.nl         */
+/*   Updated: 2022/03/16 12:11:39 by shoogenb      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,16 @@ void	mutex_locked_printf(t_philos *philo)
 	if (philo->data->state_main == ACTIVE)
 	{
 		if (philo->state_philo == EATING)
-			printf("%ld %d is eating\n", current_time_ms, philo->phil_nbr + 1);
+			printf("[%ld]\t%d\e[1;34m is eating\n\e[0m", \
+			current_time_ms, philo->phil_nbr + 1);
 		if (philo->state_philo == SLEEPING)
-			printf("%ld %d is sleeping\n", current_time_ms, philo->phil_nbr + 1);
+			printf("[%ld]\t%d\e[0;32m is sleeping\n\e[0m", \
+			current_time_ms, philo->phil_nbr + 1);
 		if (philo->state_philo == THINKING)
-			printf("%ld %d is thinking\n", current_time_ms, philo->phil_nbr + 1);
+			printf("[%ld]\t%d\e[0;33m is thinking\n\e[0m", \
+			current_time_ms, philo->phil_nbr + 1);
 		if (philo->state_philo == GRABBING)
-			printf("%ld %d has taken a fork\n", \
+			printf("[%ld]\t%d\e[0;35m has taken a fork\n\e[0m", \
 			current_time_ms, philo->phil_nbr + 1);
 	}
 	pthread_mutex_unlock(&philo->data->print_lock);

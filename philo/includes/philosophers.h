@@ -6,7 +6,7 @@
 /*   By: shoogenb <shoogenb@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/18 14:31:06 by shoogenb      #+#    #+#                 */
-/*   Updated: 2022/03/16 11:21:19 by shoogenb      ########   odam.nl         */
+/*   Updated: 2022/03/16 12:41:35 by shoogenb      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <pthread.h>
 # include "utils.h"
 # include <stdio.h>
+# include <stdbool.h>
 
 typedef enum e_state_phil
 {
@@ -60,7 +61,7 @@ void	parse_input(char **argv, int argc, t_data *data);
 t_data	*init_philo(void);
 void	free_data_and_philos(t_data *data);
 long	get_time_in_ms(void);
-void	create_philos(t_data *data);
+bool	create_philos(t_data *data);
 void	*philos_routine(void *arg);
 void	mutex_locked_printf(t_philos *philo);
 void	attempt_grab_forks(t_philos *philo);
@@ -69,5 +70,6 @@ void	sleep_ms(long ms);
 void	check_state_philos(t_data *data, t_philos *philos);
 void	join_threads(t_data *data);
 void	destroy_mutex(t_data *data);
+bool	error_msg(char *msg);
 
 #endif

@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   sleep_ms.c                                         :+:    :+:            */
+/*   error_with_return.c                                :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: shoogenb <shoogenb@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/03/15 15:18:02 by shoogenb      #+#    #+#                 */
-/*   Updated: 2022/03/16 12:40:11 by shoogenb      ########   odam.nl         */
+/*   Created: 2022/03/16 11:34:34 by shoogenb      #+#    #+#                 */
+/*   Updated: 2022/03/16 11:35:57 by shoogenb      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
-#include <unistd.h>
+#include <stdbool.h>
+#include <stdio.h>
 
-void	sleep_ms(long ms)
+bool	error_msg(char *msg)
 {
-	long	current_time_ms;
-
-	current_time_ms = get_time_in_ms();
-	while ((get_time_in_ms() - current_time_ms) < ms)
-		usleep(50);
+	perror(msg);
+	return (false);
 }

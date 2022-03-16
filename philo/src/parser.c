@@ -6,7 +6,7 @@
 /*   By: shoogenb <shoogenb@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/14 16:28:43 by shoogenb      #+#    #+#                 */
-/*   Updated: 2022/03/16 11:29:48 by shoogenb      ########   odam.nl         */
+/*   Updated: 2022/03/16 12:13:57 by shoogenb      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static	bool	is_valid(t_data *data)
 	}
 	if (data->philo_count == 1)
 	{
-		printf("%d 1 has taken a fork\n%ld 1 has died\n", \
+		printf("[%d]\t1\e[0;35m has taken a fork\n\e[0m[%ld]\t1\e[0;31m died\n\e[0m", \
 		0, data->time_to_die + 1);
 		return (false);
 	}

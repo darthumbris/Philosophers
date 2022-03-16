@@ -6,7 +6,7 @@
 /*   By: shoogenb <shoogenb@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/15 13:32:28 by shoogenb      #+#    #+#                 */
-/*   Updated: 2022/03/16 11:16:20 by shoogenb      ########   odam.nl         */
+/*   Updated: 2022/03/16 12:12:18 by shoogenb      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	check_state_philos(t_data *data, t_philos *philos)
 			{
 				data->state_main = FINISHED;
 				if (philos[i].meals_remaining)
-					printf("%ld %d died\n", \
+					printf("[%ld]\t%d\e[0;31m died\n\e[0m", \
 						get_time_in_ms() - (data->start_time), i + 1);
 			}
 			pthread_mutex_unlock(&data->meal_lock);
