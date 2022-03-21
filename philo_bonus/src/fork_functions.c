@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   destroy_mutex.c                                    :+:    :+:            */
+/*   fork_functions.c                                   :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: shoogenb <shoogenb@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/03/16 11:07:12 by shoogenb      #+#    #+#                 */
-/*   Updated: 2022/03/18 09:52:05 by shoogenb      ########   odam.nl         */
+/*   Created: 2022/03/21 10:14:33 by shoogenb      #+#    #+#                 */
+/*   Updated: 2022/03/21 14:54:01 by shoogenb      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "philosophers_bonus.h"
 
-void	destroy_mutex(t_data *data)
+void	grab_forks(t_philos *philo)
 {
-	int	i;
+	sem_wait(philo->fork_lock);
+	sem_wait(philo->forks_on_table);
+	sem_wait(philo->forks_on_table);
+	semaphore_locked_print(philo, GRABBING);
+	semaphore_locked_print(philo, GRABBING);
+}
 
-	i = -1;
-	while (++i < data->philo_count)
-		pthread_mutex_destroy(&data->fork_locks[i]);
-	pthread_mutex_destroy(&data->print_lock);
-	pthread_mutex_destroy(&data->meal_lock);
+void	drop_forks(t_philos *philo)
+{
+	sem_post(philo->forks_on_table);
+	sem_post(philo->forks_on_table);
 }

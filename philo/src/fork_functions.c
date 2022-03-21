@@ -6,7 +6,7 @@
 /*   By: shoogenb <shoogenb@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/15 15:04:44 by shoogenb      #+#    #+#                 */
-/*   Updated: 2022/03/16 10:29:43 by shoogenb      ########   odam.nl         */
+/*   Updated: 2022/03/18 09:45:04 by shoogenb      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,9 @@
 void	attempt_grab_forks(t_philos *philo)
 {
 	pthread_mutex_lock(&philo->data->fork_locks[philo->left_fork]);
-	philo->state_philo = GRABBING;
-	mutex_locked_printf(philo);
+	mutex_locked_printf(philo, GRABBING);
 	pthread_mutex_lock(&philo->data->fork_locks[philo->right_fork]);
-	mutex_locked_printf(philo);
-	pthread_mutex_lock(&philo->data->meal_lock);
+	mutex_locked_printf(philo, GRABBING);
 }
 
 /*

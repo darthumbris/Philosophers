@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   destroy_mutex.c                                    :+:    :+:            */
+/*   sleep_ms.c                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: shoogenb <shoogenb@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/03/16 11:07:12 by shoogenb      #+#    #+#                 */
-/*   Updated: 2022/03/18 09:52:05 by shoogenb      ########   odam.nl         */
+/*   Created: 2022/03/21 10:03:41 by shoogenb      #+#    #+#                 */
+/*   Updated: 2022/03/21 10:03:46 by shoogenb      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "philosophers_bonus.h"
 
-void	destroy_mutex(t_data *data)
+void	sleep_ms(long ms)
 {
-	int	i;
+	long	current_time_ms;
 
-	i = -1;
-	while (++i < data->philo_count)
-		pthread_mutex_destroy(&data->fork_locks[i]);
-	pthread_mutex_destroy(&data->print_lock);
-	pthread_mutex_destroy(&data->meal_lock);
+	current_time_ms = get_time_in_ms();
+	while ((get_time_in_ms() - current_time_ms) < ms)
+		usleep(125);
 }

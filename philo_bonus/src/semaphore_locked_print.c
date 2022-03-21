@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   destroy_mutex.c                                    :+:    :+:            */
+/*   semaphore_locked_print.c                           :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: shoogenb <shoogenb@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/03/16 11:07:12 by shoogenb      #+#    #+#                 */
-/*   Updated: 2022/03/18 09:52:05 by shoogenb      ########   odam.nl         */
+/*   Created: 2022/03/21 10:06:42 by shoogenb      #+#    #+#                 */
+/*   Updated: 2022/03/21 14:12:11 by shoogenb      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "philosophers_bonus.h"
 
-void	destroy_mutex(t_data *data)
+void	semaphore_locked_print(t_philos *philo, char *msg)
 {
-	int	i;
+	long	current_time;
 
-	i = -1;
-	while (++i < data->philo_count)
-		pthread_mutex_destroy(&data->fork_locks[i]);
-	pthread_mutex_destroy(&data->print_lock);
-	pthread_mutex_destroy(&data->meal_lock);
+	sem_wait(philo->print_lock);
+	current_time = get_time_in_ms() - philo->data->start_time;
+	printf(msg, current_time, philo->phil_nbr);
+	sem_post(philo->print_lock);
 }

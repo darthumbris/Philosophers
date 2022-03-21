@@ -1,29 +1,28 @@
-NAME = philo
+NAME = philo_bonus
 
-FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra -g
 
 SRC_DIR = src
 OBJ_DIR = obj
 INC_DIR = includes
 
-SRC = 	check_state_philos.c \
-        create_philos.c \
-        destroy_mutex.c \
-        error_with_return.c \
-        fork_functions.c \
-        free_data_and_philos.c \
-        get_time.c \
-        init_data.c \
-        join_threads.c \
-        mutex_locked_print.c \
-        parser.c \
-        philos_routine.c \
-        philosophers.c \
-        sleep_ms.c \
-        utils/ft_calloc.c \
+SRC = 	utils/ft_calloc.c \
         utils/ft_putendl_fd.c \
         utils/ft_strlen.c \
-        utils/ft_isdigit.c
+        utils/ft_isdigit.c \
+        check_state_meals.c \
+        check_state_philo.c \
+        fork_functions.c \
+        get_time_ms.c \
+        init_data.c \
+        init_philo.c \
+        init_processes.c \
+        parser.c \
+        philosophers.c \
+        routine_child_process.c \
+        semaphore_locked_print.c \
+        sleep_ms.c \
+        unlink_and_close_sems.c \
 
 OBJ := $(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))
 SRC :=  $(addprefix $(SRC_DIR)/, $(SRC))
@@ -44,7 +43,7 @@ WARN_STRING  = "[WARNING]"
 COM_STRING   = "Compiling"
 
 ifeq ($(DEBUG),1)
-	FLAGS += -g  -fsanitize=thread
+	FLAGS += -g  -fsanitize=address
     COM_STRING = "Compiling[DEBUG]"
 endif
 ifeq ($(DEBUG),2)

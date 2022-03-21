@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   destroy_mutex.c                                    :+:    :+:            */
+/*   utils_bonus.h                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: shoogenb <shoogenb@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/03/16 11:07:12 by shoogenb      #+#    #+#                 */
-/*   Updated: 2022/03/18 09:52:05 by shoogenb      ########   odam.nl         */
+/*   Created: 2022/03/15 11:15:15 by shoogenb      #+#    #+#                 */
+/*   Updated: 2022/03/21 15:11:55 by shoogenb      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#ifndef UTILS_BONUS_H
+# define UTILS_BONUS_H
 
-void	destroy_mutex(t_data *data)
-{
-	int	i;
+# include <stddef.h>
 
-	i = -1;
-	while (++i < data->philo_count)
-		pthread_mutex_destroy(&data->fork_locks[i]);
-	pthread_mutex_destroy(&data->print_lock);
-	pthread_mutex_destroy(&data->meal_lock);
-}
+void	ft_putendl_fd(char *s, int fd);
+size_t	ft_strlen(const char *s);
+void	*ft_calloc(size_t count, size_t size);
+int		ft_isdigit(int c);
+
+#endif

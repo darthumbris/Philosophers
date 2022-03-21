@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   destroy_mutex.c                                    :+:    :+:            */
+/*   ft_isdigit.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: shoogenb <shoogenb@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/03/16 11:07:12 by shoogenb      #+#    #+#                 */
-/*   Updated: 2022/03/18 09:52:05 by shoogenb      ########   odam.nl         */
+/*   Created: 2022/03/15 12:00:45 by shoogenb      #+#    #+#                 */
+/*   Updated: 2022/03/15 12:00:47 by shoogenb      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
-
-void	destroy_mutex(t_data *data)
+int	ft_isdigit(int c)
 {
-	int	i;
-
-	i = -1;
-	while (++i < data->philo_count)
-		pthread_mutex_destroy(&data->fork_locks[i]);
-	pthread_mutex_destroy(&data->print_lock);
-	pthread_mutex_destroy(&data->meal_lock);
+	if (c >= '0' && c <= '9')
+		return (1);
+	else
+		return (0);
 }

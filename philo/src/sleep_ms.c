@@ -6,7 +6,7 @@
 /*   By: shoogenb <shoogenb@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/15 15:18:02 by shoogenb      #+#    #+#                 */
-/*   Updated: 2022/03/16 12:40:11 by shoogenb      ########   odam.nl         */
+/*   Updated: 2022/03/18 09:43:30 by shoogenb      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,5 @@ void	sleep_ms(long ms)
 
 	current_time_ms = get_time_in_ms();
 	while ((get_time_in_ms() - current_time_ms) < ms)
-		usleep(50);
+		usleep(125);
 }

@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   init_philo.c                                       :+:    :+:            */
+/*   ft_strlen.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: shoogenb <shoogenb@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/03/15 11:02:27 by shoogenb      #+#    #+#                 */
-/*   Updated: 2022/03/16 11:24:08 by shoogenb      ########   odam.nl         */
+/*   Created: 2022/03/15 11:14:41 by shoogenb      #+#    #+#                 */
+/*   Updated: 2022/03/15 11:14:49 by shoogenb      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
-#include "utils.h"
+#include <stddef.h>
 
-t_data	*init_philo(void)
+size_t	ft_strlen(const char *s)
 {
-	t_data	*new;
+	size_t	counter;
 
-	new = ft_calloc(1, sizeof(t_data));
-	if (!new)
-		return (NULL);
-	new->amount_of_meals = -1;
-	new->time_to_die = 0;
-	new->time_to_eat = 0;
-	new->time_to_sleep = 0;
-	new->philo_count = 0;
-	new->start_time = get_time_in_ms();
-	new->fork_locks = NULL;
-	new->philos = NULL;
-	return (new);
+	counter = 0;
+	while (s[counter])
+		counter++;
+	return (counter);
 }

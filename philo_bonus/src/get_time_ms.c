@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   destroy_mutex.c                                    :+:    :+:            */
+/*   get_time_ms.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: shoogenb <shoogenb@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/03/16 11:07:12 by shoogenb      #+#    #+#                 */
-/*   Updated: 2022/03/18 09:52:05 by shoogenb      ########   odam.nl         */
+/*   Created: 2022/03/21 09:50:59 by shoogenb      #+#    #+#                 */
+/*   Updated: 2022/03/21 09:51:01 by shoogenb      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include <sys/time.h>
 
-void	destroy_mutex(t_data *data)
+long	get_time_in_ms(void)
 {
-	int	i;
+	long			ms;
+	struct timeval	timev;
 
-	i = -1;
-	while (++i < data->philo_count)
-		pthread_mutex_destroy(&data->fork_locks[i]);
-	pthread_mutex_destroy(&data->print_lock);
-	pthread_mutex_destroy(&data->meal_lock);
+	gettimeofday(&timev, NULL);
+	ms = timev.tv_sec * 1000;
+	ms += timev.tv_usec / 1000;
+	return (ms);
 }

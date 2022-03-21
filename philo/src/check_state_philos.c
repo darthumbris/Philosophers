@@ -6,7 +6,7 @@
 /*   By: shoogenb <shoogenb@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/15 13:32:28 by shoogenb      #+#    #+#                 */
-/*   Updated: 2022/03/16 12:12:18 by shoogenb      ########   odam.nl         */
+/*   Updated: 2022/03/18 10:02:09 by shoogenb      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,19 @@ void	check_state_philos(t_data *data, t_philos *philos)
 		{
 			pthread_mutex_lock(&data->meal_lock);
 			time_waiting = get_time_in_ms() - (philos[i].time_since_meal);
+			pthread_mutex_unlock(&data->meal_lock);
 			if (time_waiting > data->time_to_die)
 			{
+				pthread_mutex_lock(&data->print_lock);
 				data->state_main = FINISHED;
 				if (philos[i].meals_remaining)
-					printf("[%ld]\t%d\e[0;31m died\n\e[0m", \
-						get_time_in_ms() - (data->start_time), i + 1);
+					printf(DEAD, get_time_in_ms() - (data->start_time), i + 1);
+				pthread_mutex_unlock(&data->print_lock);
 			}
-			pthread_mutex_unlock(&data->meal_lock);
 			if (data->state_main == FINISHED)
 				return ;
 			i++;
-			usleep(50);
 		}
+		sleep_ms(1);
 	}
 }

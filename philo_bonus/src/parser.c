@@ -6,12 +6,13 @@
 /*   By: shoogenb <shoogenb@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/14 16:28:43 by shoogenb      #+#    #+#                 */
-/*   Updated: 2022/03/18 09:55:03 by shoogenb      ########   odam.nl         */
+/*   Updated: 2022/03/21 15:32:45 by shoogenb      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
-#include <stdbool.h>
+#include "philosophers_bonus.h"
+#include <signal.h>
+#include <stdlib.h>
 
 static int	check_int(char *nbr_str)
 {
@@ -65,6 +66,8 @@ static	bool	is_valid(t_data *data)
 
 void	parse_input(char **argv, int argc, t_data *data)
 {
+	t_philos	philo;
+
 	data->philo_count = check_int(argv[1]);
 	data->time_to_die = (long)check_int(argv[2]);
 	data->time_to_eat = (long)check_int(argv[3]);
@@ -75,13 +78,13 @@ void	parse_input(char **argv, int argc, t_data *data)
 		if (data->amount_of_meals <= 0)
 			data->amount_of_meals = 0;
 	}
-	if (is_valid(data) && create_philos(data))
+	if (is_valid(data))
 	{
-		check_state_philos(data, data->philos);
-		join_threads(data);
-		destroy_mutex(data);
-		free_data_and_philos(data);
+		if (!init_philo(data, &philo))
+			return (unlink_and_close_semaphores(philo));
+		init_processes(&philo);
+		unlink_and_close_semaphores(philo);
 	}
 	else
-		free_data_and_philos(data);
+		free(data);
 }

@@ -6,11 +6,11 @@
 /*   By: shoogenb <shoogenb@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/18 14:30:05 by shoogenb      #+#    #+#                 */
-/*   Updated: 2022/03/18 09:55:33 by shoogenb      ########   odam.nl         */
+/*   Updated: 2022/03/21 15:27:12 by shoogenb      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "philosophers_bonus.h"
 #include <stdlib.h>
 
 int	main(int argc, char **argv)
@@ -22,7 +22,7 @@ int	main(int argc, char **argv)
 		data = init_data();
 		if (!data)
 		{
-			ft_putendl_fd("Error mallocing data", 2);
+			ft_putendl_fd(ERROR_MALLOC, 2);
 			return (1);
 		}
 		parse_input(argv, argc, data);

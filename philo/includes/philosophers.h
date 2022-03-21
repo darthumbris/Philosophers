@@ -6,7 +6,7 @@
 /*   By: shoogenb <shoogenb@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/18 14:31:06 by shoogenb      #+#    #+#                 */
-/*   Updated: 2022/03/16 12:41:35 by shoogenb      ########   odam.nl         */
+/*   Updated: 2022/03/18 09:52:43 by shoogenb      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,17 @@
 # include <stdio.h>
 # include <stdbool.h>
 
+# define SLEEPING		"[%ld]\t%d\e[0;32m is sleeping\n\e[0m"
+# define EATING			"[%ld]\t%d\e[1;34m is eating\n\e[0m"
+# define THINKING		"[%ld]\t%d\e[0;33m is thinking\n\e[0m"
+# define GRABBING		"[%ld]\t%d\e[0;35m has taken a fork\n\e[0m"
+# define DEAD			"[%ld]\t%d\e[0;31m died\n\e[0m"
+# define ERROR_MUTEX	"Error: Mutex failed to init"
+# define ERROR_MALLOC	"Error: Failed to allocate memory"
+# define ERROR_THREAD	"Error: Failed to create thread"
+
 typedef enum e_state_phil
 {
-	EATING,
-	SLEEPING,
-	THINKING,
-	GRABBING,
 	ACTIVE,
 	FINISHED
 }			t_state_phil;
@@ -39,9 +44,7 @@ typedef struct s_data
 	t_state_phil		state_main;
 	pthread_mutex_t		*fork_locks;
 	pthread_mutex_t		print_lock;
-	pthread_mutex_t		death_lock;
 	pthread_mutex_t		meal_lock;
-	pthread_t			main_thread;
 	struct s_philos		*philos;
 }			t_data;
 
@@ -53,17 +56,16 @@ typedef struct s_philos
 	int				left_fork;
 	int				right_fork;
 	pthread_t		thread;
-	t_state_phil	state_philo;
 	t_data			*data;
 }			t_philos;
 
 void	parse_input(char **argv, int argc, t_data *data);
-t_data	*init_philo(void);
+t_data	*init_data(void);
 void	free_data_and_philos(t_data *data);
 long	get_time_in_ms(void);
 bool	create_philos(t_data *data);
 void	*philos_routine(void *arg);
-void	mutex_locked_printf(t_philos *philo);
+void	mutex_locked_printf(t_philos *philo, char *msg);
 void	attempt_grab_forks(t_philos *philo);
 void	drop_forks(t_philos *philo);
 void	sleep_ms(long ms);

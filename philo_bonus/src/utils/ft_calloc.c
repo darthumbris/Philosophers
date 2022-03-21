@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   destroy_mutex.c                                    :+:    :+:            */
+/*   ft_calloc.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: shoogenb <shoogenb@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/03/16 11:07:12 by shoogenb      #+#    #+#                 */
-/*   Updated: 2022/03/18 09:52:05 by shoogenb      ########   odam.nl         */
+/*   Created: 2022/03/15 11:09:03 by shoogenb      #+#    #+#                 */
+/*   Updated: 2022/03/15 12:21:30 by shoogenb      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include <stdlib.h>
+#include <string.h>
 
-void	destroy_mutex(t_data *data)
+void	*ft_calloc(size_t count, size_t size)
 {
-	int	i;
+	void	*temp;
 
-	i = -1;
-	while (++i < data->philo_count)
-		pthread_mutex_destroy(&data->fork_locks[i]);
-	pthread_mutex_destroy(&data->print_lock);
-	pthread_mutex_destroy(&data->meal_lock);
+	if (count == 0 || size == 0)
+	{
+		count = 1;
+		size = 1;
+	}
+	temp = malloc(count * size);
+	if (!temp)
+		return (NULL);
+	memset(temp, 0, count * size);
+	return (temp);
 }
