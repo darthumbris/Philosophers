@@ -6,7 +6,7 @@
 /*   By: shoogenb <shoogenb@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/21 09:57:19 by shoogenb      #+#    #+#                 */
-/*   Updated: 2022/03/21 15:14:08 by shoogenb      ########   odam.nl         */
+/*   Updated: 2022/03/21 16:11:41 by shoogenb      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,5 @@ bool	routine_child_process(t_philos *philo)
 		sleep_routine(philo);
 		think_routine(philo);
 	}
-	exit(EXIT_SUCCESS);
 	return (true);
 }

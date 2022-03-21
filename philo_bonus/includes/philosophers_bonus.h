@@ -6,7 +6,7 @@
 /*   By: shoogenb <shoogenb@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/18 14:31:06 by shoogenb      #+#    #+#                 */
-/*   Updated: 2022/03/21 15:23:11 by shoogenb      ########   odam.nl         */
+/*   Updated: 2022/03/21 16:16:38 by shoogenb      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,12 @@
 # include <semaphore.h>
 # include <unistd.h>
 
-# define SLEEPING			"\e[0;37m\e[0m[%ld]\t%d\e[0;32m is sleeping\e[0m\n"
-# define EATING				"\e[0;37m\e[0m[%ld]\t%d\e[1;34m is eating\e[0m\n"
-# define THINKING			"\e[0;37m\e[0m[%ld]\t%d\e[0;33m is thinking\e[0m\n"
-# define GRABBING			"\e[0;37m\e[0m[%ld]\t%d\e[0;35m has taken a fork\e[0m\n"
-# define DEAD				"\e[0;37m\e[0m[%ld]\t%d\e[0;31m died\e[0m\n"
+# define SLEEPING		"\e[0;37m\e[0m[%ld]\t%d\e[0;32m is sleeping\e[0m\n"
+# define EATING			"\e[0;37m\e[0m[%ld]\t%d\e[1;34m is eating\e[0m\n"
+# define THINKING		"\e[0;37m\e[0m[%ld]\t%d\e[0;33m is thinking\e[0m\n"
+# define GRABBING		"\e[0;37m\e[0m[%ld]\t%d\e[0;35m has taken a fork\e[0m\n"
+# define DEAD			"\e[0;37m\e[0m[%ld]\t%d\e[0;31m died\e[0m\n"
+# define MEALS_DONE		"\e[0;32mAll philosophers have eaten their meals\e[0m\n"
 
 # define ERROR_MUTEX		"Error: Mutex failed to init"
 # define ERROR_MALLOC		"Error: Failed to allocate memory"
@@ -51,7 +52,6 @@ typedef struct s_philos
 {
 	long			time_since_meal;
 	int				phil_nbr;
-	pid_t			pid;
 	sem_t			*fork_lock;
 	sem_t			*print_lock;
 	sem_t			*forks_on_table;

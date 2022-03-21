@@ -6,7 +6,7 @@
 /*   By: shoogenb <shoogenb@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/21 10:31:41 by shoogenb      #+#    #+#                 */
-/*   Updated: 2022/03/21 15:24:32 by shoogenb      ########   odam.nl         */
+/*   Updated: 2022/03/21 16:08:47 by shoogenb      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	*check_state_meals(void *arg)
 	{
 		sem_wait(philo->print_lock);
 		sem_post(philo->dead_lock);
-		printf("\e[0;32mAll philosophers have eaten their meals\e[0m\n");
+		printf(MEALS_DONE);
 	}
-	return (arg);
+	return (NULL);
 }

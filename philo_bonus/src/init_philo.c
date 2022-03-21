@@ -6,7 +6,7 @@
 /*   By: shoogenb <shoogenb@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/18 10:35:00 by shoogenb      #+#    #+#                 */
-/*   Updated: 2022/03/21 14:22:23 by shoogenb      ########   odam.nl         */
+/*   Updated: 2022/03/21 16:10:28 by shoogenb      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,5 @@ static bool	init_semaphores(t_philos *philo)
 bool	init_philo(t_data *data, t_philos *philo)
 {
 	philo->data = data;
-	if (!init_semaphores(philo))
-		return (false);
-	return (true);
+	return (init_semaphores(philo));
 }
