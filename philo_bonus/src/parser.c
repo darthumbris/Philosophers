@@ -6,7 +6,7 @@
 /*   By: shoogenb <shoogenb@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/14 16:28:43 by shoogenb      #+#    #+#                 */
-/*   Updated: 2022/03/21 15:32:45 by shoogenb      ########   odam.nl         */
+/*   Updated: 2022/03/22 09:38:57 by shoogenb      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,13 @@ static	bool	is_valid(t_data *data)
 	return (true);
 }
 
+/*
+ * This function will check the input for the
+ * arguments and set the data to them and 
+ * then checks if they are valid. If valid it 
+ * will then contiue on with creating the philo
+ * and processes.
+ */
 void	parse_input(char **argv, int argc, t_data *data)
 {
 	t_philos	philo;

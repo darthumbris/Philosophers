@@ -6,13 +6,18 @@
 /*   By: shoogenb <shoogenb@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/21 14:03:26 by shoogenb      #+#    #+#                 */
-/*   Updated: 2022/03/21 15:34:55 by shoogenb      ########   odam.nl         */
+/*   Updated: 2022/03/22 09:47:48 by shoogenb      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers_bonus.h"
 #include <stdlib.h>
 
+/*
+ * This function will unlink and close all
+ * the semaphores opened in the init_philo function
+ * it will also free the data struct.
+ */
 void	unlink_and_close_semaphores(t_philos philo)
 {
 	sem_unlink(SEM_FORKS_TABLE);

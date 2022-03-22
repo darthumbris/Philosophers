@@ -6,12 +6,16 @@
 /*   By: shoogenb <shoogenb@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/18 10:36:10 by shoogenb      #+#    #+#                 */
-/*   Updated: 2022/03/21 13:25:36 by shoogenb      ########   odam.nl         */
+/*   Updated: 2022/03/22 09:34:52 by shoogenb      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers_bonus.h"
 
+/*
+ * This function initializes the data
+ * and will set the start time of the program.
+ */
 t_data	*init_data(void)
 {
 	t_data	*new;

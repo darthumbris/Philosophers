@@ -6,7 +6,7 @@
 /*   By: shoogenb <shoogenb@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/18 14:31:06 by shoogenb      #+#    #+#                 */
-/*   Updated: 2022/03/21 16:16:38 by shoogenb      ########   odam.nl         */
+/*   Updated: 2022/03/22 09:14:16 by shoogenb      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct s_philos
 {
 	long			time_since_meal;
 	int				phil_nbr;
+	int				meals_eaten;
 	sem_t			*fork_lock;
 	sem_t			*print_lock;
 	sem_t			*forks_on_table;

@@ -6,12 +6,24 @@
 /*   By: shoogenb <shoogenb@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/21 10:24:42 by shoogenb      #+#    #+#                 */
-/*   Updated: 2022/03/21 14:58:55 by shoogenb      ########   odam.nl         */
+/*   Updated: 2022/03/22 09:31:30 by shoogenb      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers_bonus.h"
 
+/*
+ * This function
+ * will compare the difference of current time
+ * and the last time the philosopher has eaten
+ * with the time_to_die option
+ * to see if the philosopher should die
+ * it will than lock the print and print a death
+ * message and than unlock the dead lock
+ * because the deadlock is unlocked
+ * the lock set in the init_processes is unlocked
+ * and it can start killing the processes.
+ */
 void	*check_state_philo(void *arg)
 {
 	t_philos	*philo;

@@ -6,7 +6,7 @@
 /*   By: shoogenb <shoogenb@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/21 09:49:30 by shoogenb      #+#    #+#                 */
-/*   Updated: 2022/03/21 16:13:53 by shoogenb      ########   odam.nl         */
+/*   Updated: 2022/03/22 09:31:53 by shoogenb      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <signal.h>
 
-bool	fork_processes(t_philos *philo, int *pid)
+static bool	fork_processes(t_philos *philo, int *pid)
 {
 	int	i;
 
@@ -37,7 +37,7 @@ bool	fork_processes(t_philos *philo, int *pid)
 	return (true);
 }
 
-void	kill_processes(t_philos *philo, int *pid)
+static void	kill_processes(t_philos *philo, int *pid)
 {
 	int		i;
 
@@ -49,9 +49,47 @@ void	kill_processes(t_philos *philo, int *pid)
 	}
 }
 
-void	init_processes(t_philos *philo)
+/*
+ * This function will unlock the meals lock
+ * in case a philosopher dies before
+ * all the meals have been eaten 
+ * (this is only needed if the optional argument
+ * is used)
+ */
+static void	unlock_meals_lock(t_philos *philo)
 {
 	int			i;
+	int			meals_to_eat;
+
+	i = 0;
+	meals_to_eat = philo->data->amount_of_meals;
+	philo->data->amount_of_meals = -1;
+	while (i < meals_to_eat)
+	{
+		sem_post(philo->meals_lock);
+		i++;
+	}
+}
+
+/*
+ * This function will start a thread that will
+ * check the amount of meals eaten using the
+ * semaphore meals_lock
+ * it will then create all the processes
+ * and each process will start a thread to
+ * check if that philospher needs to die
+ * if a philosopher dies or all philosophers
+ * have eaten their meals it will kill all
+ * the processes because the dead_lock will
+ * then be unlocked.
+ * In case a philosopher dies before they
+ * have eaten all their meals
+ * the sem_post after the kill processes
+ * will ensure that the meals_lock will
+ * be unlocked
+ */
+void	init_processes(t_philos *philo)
+{
 	pid_t		*pid;
 	pthread_t	thread_meals;
 
@@ -64,12 +102,6 @@ void	init_processes(t_philos *philo)
 		return (free(pid));
 	sem_wait(philo->dead_lock);
 	kill_processes(philo, pid);
-	i = philo->data->amount_of_meals - 1;
-	philo->data->amount_of_meals = -1;
-	while (i > 0)
-	{
-		sem_post(philo->meals_lock);
-		i--;
-	}
+	unlock_meals_lock(philo);
 	free(pid);
 }

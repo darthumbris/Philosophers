@@ -43,12 +43,12 @@ WARN_STRING  = "[WARNING]"
 COM_STRING   = "Compiling"
 
 ifeq ($(DEBUG),1)
-	FLAGS += -g  -fsanitize=address
+	FLAGS += -g
     COM_STRING = "Compiling[DEBUG]"
 endif
 ifeq ($(DEBUG),2)
 	FLAGS += -g3 -pthread -fsanitize=thread
-    COM_STRING = "Compiling[LEAKS]"
+    COM_STRING = "Compiling[DEBUG_TH]"
 endif
 
 all: $(NAME)
